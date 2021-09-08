@@ -1,48 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/07 22:53:13 by nbarreir         ###   ########.fr       */
+/*   Created: 2021/08/31 01:23:42 by nbarreir          #+#    #+#             */
+/*   Updated: 2021/09/04 19:23:42 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
-	int c;
+	size_t	i;
 
 	i = 0;
-	c = 0;
-	if(argc == 1)
-		return (0);
-
-	argv = &argv[1];
-	argc--;
-
-	if (argc == 1)
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		argv = ft_split(argv[0], ' ');
-		while (argv[i] != NULL)
-			i++;
-		argc = i;
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
 	}
-	while (c < argc)
+	if (s1[i] == '\0' || s2[i] == '\0')
 	{
-		checker_errors(argv, c);
-		c++;
+		return (s1[i] - s2[i]);
 	}
-	//printf("%i\n", argc);
-	//i = 0;
-	//while (argv[i] != NULL)
-	//{
-	//	printf("%s\n", argv[i]);
-	//	i++;
-	//}
-	return(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/06 23:46:58 by nbarreir         ###   ########.fr        #
+#    Updated: 2021/09/07 23:25:24 by nbarreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,12 @@ SRC_PATH = ./src/
 UTILS_PATH = ./utils/
 
 SRC = $(SRC_PATH)push_swap.c\
+			$(SRC_PATH)errors.c\
+			$(UTILS_PATH)ft_split.c\
+			$(UTILS_PATH)ft_isdigit.c\
+			$(UTILS_PATH)ft_isspace.c\
+			$(UTILS_PATH)ft_atoll.c\
+			$(UTILS_PATH)ft_strncmp.c\
 
 
 OBJ = $(SRC:.c=.o)
