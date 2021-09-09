@@ -6,7 +6,7 @@
 #    By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/07 23:25:24 by nbarreir         ###   ########.fr        #
+#    Updated: 2021/09/08 23:27:58 by nbarreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,16 @@ INCLUDES = ./includes/push_swap.h
 SRC_PATH = ./src/
 UTILS_PATH = ./utils/
 
-SRC = $(SRC_PATH)push_swap.c\
+SRC = $(SRC_PATH)main.c\
 			$(SRC_PATH)errors.c\
+			$(SRC_PATH)stack_a.c\
 			$(UTILS_PATH)ft_split.c\
 			$(UTILS_PATH)ft_isdigit.c\
 			$(UTILS_PATH)ft_isspace.c\
 			$(UTILS_PATH)ft_atoll.c\
 			$(UTILS_PATH)ft_strncmp.c\
+			$(UTILS_PATH)ft_lstadd_back.c\
+			$(UTILS_PATH)ft_lstlast.c\
 
 
 OBJ = $(SRC:.c=.o)

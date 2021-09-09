@@ -6,7 +6,7 @@
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:06:42 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/07 23:45:04 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/08 22:00:19 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,10 @@ void	checker_errors(char **argv, int i)
 	{
 		if(!(ft_isdigit(argv[i][j])))
 			exit_errors();
-		//if(i != j && ft_strncmp(argv[i], argv[j], sizeof(argv[i][j])) == 0)
-		//	exit_errors();
 		j++;
 	}
 	checker_duplicate(argv);
 	temp = ft_atoll(argv[i]);
 	if (temp > INT_MAX || temp < INT_MIN)
 		exit_errors();
-	//printf("%f\n", temp);
-
 }
