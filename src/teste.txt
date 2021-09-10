@@ -1,0 +1,50 @@
+3			3
+2			1
+1			2
+
+2			2
+1			3
+3			1
+
+1			1
+2			3
+3			2
+
+Menor condição:
+1			Se 1st < 2nd -> ok, sai do programa com return (0)
+2
+
+2			Se 1st > 2nd
+1			swap a (sa) -> inverter a primeira e segunda posições
+
+1a condição:
+1    Se 1st < 2nd < 3rd -> ok, sai do programa com return (0)
+2
+3
+
+2a condição:
+1   Se 1st < 2nd && 2nd > 3rd
+3   rotate a (ra) -> coloca 1st na última posição
+2   swap a (sa) -> inverter a primeira e segunda posições
+    reverse rotate a (rra) -> colocar o último na primeira posição
+    3 movimentos, sai com return (0)
+
+3a condição:
+2   Se 1st > 2nd && 2nd < 3rd && 3rd > 1st
+1   swap a (sa) -> inverter a primeira e segunda posições
+3
+
+4a condição:
+2		Se o 1st < 2nd && 1st e 2nd > 3nd
+3		reverse rotate a (rra) -> colocar o último na primeira posição
+1
+
+5a condição:
+3		Se o 1st > 2nd > 3nd
+2		swap a (sa) -> inverter a primeira e segunda posições
+1		reverse rotate a (rra) -> colocar o último na primeira posição
+
+6a condição:
+3		Se o 1st > 2nd && 2nd < 3nd
+1		rotate a (ra) -> coloca 1st na última posição
+2

@@ -6,7 +6,7 @@
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 23:13:59 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/08 23:23:32 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/10 00:20:38 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct s_list
 	struct s_list *next;
 } t_list;
 
+typedef struct s_stack
+{
+	t_list *stack_a;
+	t_list *stack_b;
+	int	len_stack;
+} t_stack;
+
 /*
 **PUSH_SWAP
 */
@@ -34,7 +41,16 @@ typedef struct s_list
 void						checker_errors(char **argv, int i);
 void	checker_duplicate(char **argv);
 int							exit_errors(void);
-int init_stack(int argc, char **argv);
+int init_stack(t_stack *stack, int argc, char **argv);
+void	set_sort(t_stack *stack);
+//void	sort_three(t_stack *stack);
+
+/*
+** BASIC_MOVEMENTS
+*/
+void	swap_a(t_stack *stack);
+void	rotate_a(t_list **stack);
+void	reverse_rotate_a(t_list **stack);
 
 /*
 **UTILS
@@ -46,6 +62,8 @@ char						**ft_split(char const *s, char c);
 long long int		ft_atoll(char *str);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 void ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list *ft_lstlast(t_list *lst);
+int	ft_lstsize(t_list *lst);
 
 #endif

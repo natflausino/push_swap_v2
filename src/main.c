@@ -6,7 +6,7 @@
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/08 23:26:28 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/09 23:09:11 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void verify_string(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+	t_stack stack;
+
 	if (argc == 1)
 		return (0);
 
@@ -47,7 +49,8 @@ int main(int argc, char **argv)
 	argc--;
 	verify_string(argc, argv);
 	verify_args(argc, argv);
-	init_stack(argc, argv);
+	init_stack(&stack, argc, argv);
+	set_sort(&stack);
 
 	/*
 	printf("%i\n", argc);

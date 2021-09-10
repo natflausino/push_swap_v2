@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_a.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/08 23:25:25 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/09 22:11:51 by nbarreir         ###   ########.fr       */
+/*   Created: 2021/03/20 00:41:07 by nbarreir          #+#    #+#             */
+/*   Updated: 2021/09/10 00:15:15 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int init_stack(t_stack *stack, int argc, char **argv)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int i;
-	double temp;
-
-	stack->stack_a = NULL;
-	stack->len_stack = argc;
-	i = 0;
-	while (i < stack->len_stack)
+	if (!new)
+		return ;
+	if (!*lst)
 	{
-		t_list *number;
-
-		number = (t_list *)malloc(sizeof(t_list));
-		if (!number)
-			return (1);
-		temp = ft_atoll(argv[i]);
-		number->number = temp;
-		number->next = NULL;
-		ft_lstadd_back(&stack->stack_a, number);
-		i++;
+		*lst = new;
+		return ;
 	}
-	return (0);
+	new->next = *lst;
+	*lst = new;
 }
