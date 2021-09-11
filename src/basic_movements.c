@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   basic_movements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:57:46 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/10 22:13:54 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/10 22:35:24 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap(t_stack *stack)
+void	swap(t_list *stack)
 {
 	int aux;
-
+	
 	aux = stack->number;
 	stack->number = stack->next->number;
 	stack->next->number = aux;
@@ -31,7 +31,6 @@ void	rotate(t_list **stack)
 	last->next = *stack;
 	(*stack)->next = NULL;
 	*stack = aux.next;
-	write(1, "ra\n", 3);
 }
 
 void	reverse_rotate(t_list **stack)
@@ -48,12 +47,6 @@ void	reverse_rotate(t_list **stack)
 		*stack = (*stack)->next;
 	(*stack)->next = NULL;
 	*stack = last;
-	if (*stack == stack->stack_a)
-		write(1, "rra\n", 4);
-	if(*stack == stack->stack_b)
-		write(1, "rrb\n", 4);
-	if(*stack == stack->stack_b)
-		write(1, "rrb\n", 4);
 }
 
 void set_rotate(t_list **a, t_list **b)
@@ -77,9 +70,9 @@ void set_reverse_rotate(t_list **a, t_list **b)
 	if (b)
 		reverse_rotate(b);
 	if (a && !b)
-		write(1, "rra\n", 3);
+		write(1, "rra\n", 4);
 	else if (!a && b)
-		write(1, "rrb\n", 3);
+		write(1, "rrb\n", 4);
 	else
 		write(1, "rrr\n", 4);
 }
