@@ -6,23 +6,22 @@
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:57:46 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/10 00:38:32 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/10 22:13:54 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap_a(t_stack *stack)
+void	swap(t_stack *stack)
 {
 	int aux;
 
-	aux = stack->stack_a->number;
-	stack->stack_a->number = stack->stack_a->next->number;
-	stack->stack_a->next->number = aux;
-	write(1, "sa\n", 3);
+	aux = stack->number;
+	stack->number = stack->next->number;
+	stack->next->number = aux;
 }
 
-void	rotate_a(t_list **stack)
+void	rotate(t_list **stack)
 {
 	t_list aux;
 	t_list *last;
@@ -35,7 +34,7 @@ void	rotate_a(t_list **stack)
 	write(1, "ra\n", 3);
 }
 
-void	reverse_rotate_a(t_list **stack)
+void	reverse_rotate(t_list **stack)
 {
 	int i;
 	int j;
@@ -49,5 +48,52 @@ void	reverse_rotate_a(t_list **stack)
 		*stack = (*stack)->next;
 	(*stack)->next = NULL;
 	*stack = last;
-	write(1, "rra\n", 4);
+	if (*stack == stack->stack_a)
+		write(1, "rra\n", 4);
+	if(*stack == stack->stack_b)
+		write(1, "rrb\n", 4);
+	if(*stack == stack->stack_b)
+		write(1, "rrb\n", 4);
+}
+
+void set_rotate(t_list **a, t_list **b)
+{
+	if (a)
+		rotate(a);
+	if (b)
+		rotate(b);
+	if (a && !b)
+		write(1, "ra\n", 3);
+	else if (!a && b)
+		write(1, "rb\n", 3);
+	else
+		write(1, "rr\n", 4);
+}
+
+void set_reverse_rotate(t_list **a, t_list **b)
+{
+	if (a)
+		reverse_rotate(a);
+	if (b)
+		reverse_rotate(b);
+	if (a && !b)
+		write(1, "rra\n", 3);
+	else if (!a && b)
+		write(1, "rrb\n", 3);
+	else
+		write(1, "rrr\n", 4);
+}
+
+void set_swap(t_list *a, t_list *b)
+{
+	if (a)
+		swap(a);
+	if (b)
+		swap(b);
+	if (a && !b)
+		write(1, "sa\n", 3);
+	else if (!a && b)
+		write(1, "sb\n", 3);
+	else
+		write(1, "ss\n", 4);
 }

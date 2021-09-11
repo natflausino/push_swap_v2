@@ -6,7 +6,7 @@
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:49:12 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/10 00:18:50 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/10 22:15:29 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	set_sort(t_stack *stack)
 {
 	if (stack->len_stack <= 3)
-		reverse_rotate_a(&stack->stack_a);
+		set_swap(stack->stack_a, NULL);
 		//sort_three(stack);
 
 	t_list *node;

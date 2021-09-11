@@ -6,7 +6,7 @@
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 23:13:59 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/10 00:20:38 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/10 22:14:19 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,16 @@ int							exit_errors(void);
 int init_stack(t_stack *stack, int argc, char **argv);
 void	set_sort(t_stack *stack);
 //void	sort_three(t_stack *stack);
+void set_rotate(t_list **a, t_list **b);
+void set_swap(t_list *a, t_list *b);
+void set_reverse_rotate(t_list **a, t_list **b);
 
 /*
 ** BASIC_MOVEMENTS
 */
-void	swap_a(t_stack *stack);
-void	rotate_a(t_list **stack);
-void	reverse_rotate_a(t_list **stack);
+void	swap(t_stack *stack);
+void	rotate(t_list **stack);
+void	reverse_rotate(t_list **stack);
 
 /*
 **UTILS

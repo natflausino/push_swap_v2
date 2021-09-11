@@ -6,7 +6,7 @@
 #    By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/10 00:21:03 by nbarreir         ###   ########.fr        #
+#    Updated: 2021/09/10 12:41:46 by nbarreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,10 +49,10 @@ git:
 #make git m="blablabla"
 
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJ)
 
 fclean:
-	@rm -f $(NAME) $(OBJ)
+	rm -f $(NAME) $(OBJ)
 
 re: fclean all
 
