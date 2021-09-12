@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_movements.c                                  :+:      :+:    :+:   */
+/*   rotate_reverse.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 22:57:46 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/10 22:35:24 by csantos-         ###   ########.fr       */
+/*   Created: 2021/09/11 21:48:57 by csantos-          #+#    #+#             */
+/*   Updated: 2021/09/11 21:49:30 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap(t_list *stack)
-{
-	int aux;
-	
-	aux = stack->number;
-	stack->number = stack->next->number;
-	stack->next->number = aux;
-}
-
 void	rotate(t_list **stack)
 {
-	t_list aux;
-	t_list *last;
+	t_list	aux;
+	t_list	*last;
 
 	aux = **stack;
 	last = ft_lstlast(*stack);
@@ -35,9 +26,9 @@ void	rotate(t_list **stack)
 
 void	reverse_rotate(t_list **stack)
 {
-	int i;
-	int j;
-	t_list *last;
+	int		i;
+	int		j;
+	t_list	*last;
 
 	j = 0;
 	i = ft_lstsize(*stack);
@@ -49,7 +40,7 @@ void	reverse_rotate(t_list **stack)
 	*stack = last;
 }
 
-void set_rotate(t_list **a, t_list **b)
+void	set_rotate(t_list **a, t_list **b)
 {
 	if (a)
 		rotate(a);
@@ -63,7 +54,7 @@ void set_rotate(t_list **a, t_list **b)
 		write(1, "rr\n", 4);
 }
 
-void set_reverse_rotate(t_list **a, t_list **b)
+void	set_reverse_rotate(t_list **a, t_list **b)
 {
 	if (a)
 		reverse_rotate(a);
@@ -75,18 +66,4 @@ void set_reverse_rotate(t_list **a, t_list **b)
 		write(1, "rrb\n", 4);
 	else
 		write(1, "rrr\n", 4);
-}
-
-void set_swap(t_list *a, t_list *b)
-{
-	if (a)
-		swap(a);
-	if (b)
-		swap(b);
-	if (a && !b)
-		write(1, "sa\n", 3);
-	else if (!a && b)
-		write(1, "sb\n", 3);
-	else
-		write(1, "ss\n", 4);
 }

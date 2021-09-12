@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:06:42 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/08 22:00:19 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/11 21:32:56 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	exit_errors(void)
 
 void	checker_duplicate(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (argv[i])
@@ -30,7 +30,7 @@ void	checker_duplicate(char **argv)
 		j = 0;
 		while (argv[j])
 		{
-			if(i != j && ft_strncmp(argv[i], argv[j], sizeof(argv[i])) == 0)
+			if (i != j && ft_strncmp(argv[i], argv[j], sizeof(argv[i])) == 0)
 				exit_errors();
 			j++;
 		}
@@ -40,8 +40,8 @@ void	checker_duplicate(char **argv)
 
 void	checker_errors(char **argv, int i)
 {
-	int	j;
-	double temp;
+	int		j;
+	double	temp;
 
 	j = 0;
 	temp = 0;
@@ -53,7 +53,7 @@ void	checker_errors(char **argv, int i)
 	}
 	while (argv[i][j])
 	{
-		if(!(ft_isdigit(argv[i][j])))
+		if (!(ft_isdigit(argv[i][j])))
 			exit_errors();
 		j++;
 	}

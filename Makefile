@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/10 12:41:46 by nbarreir         ###   ########.fr        #
+#    Updated: 2021/09/12 01:38:32 by csantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CC = clang
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 INCLUDES = ./includes/push_swap.h
 
 SRC_PATH = ./src/
@@ -22,8 +22,9 @@ UTILS_PATH = ./utils/
 SRC = $(SRC_PATH)main.c\
 			$(SRC_PATH)errors.c\
 			$(SRC_PATH)stack_a.c\
-			$(SRC_PATH)sort_3.c\
-			$(SRC_PATH)basic_movements.c\
+			$(SRC_PATH)set_sort.c\
+			$(SRC_PATH)move_rotate_reverse.c\
+			$(SRC_PATH)move_push_swap.c\
 			$(UTILS_PATH)ft_split.c\
 			$(UTILS_PATH)ft_isdigit.c\
 			$(UTILS_PATH)ft_isspace.c\

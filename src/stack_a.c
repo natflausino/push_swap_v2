@@ -3,35 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   stack_a.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 23:25:25 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/09 22:11:51 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/11 21:46:01 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int init_stack(t_stack *stack, int argc, char **argv)
+void	fill_stack_a(t_stack *stack, char **argv)
 {
-	int i;
-	double temp;
+	int		i;
+	double	temp;
+	t_list	*number;
 
-	stack->stack_a = NULL;
-	stack->len_stack = argc;
 	i = 0;
-	while (i < stack->len_stack)
+	while (i < stack->len_args)
 	{
-		t_list *number;
-
 		number = (t_list *)malloc(sizeof(t_list));
 		if (!number)
-			return (1);
+			return ;
 		temp = ft_atoll(argv[i]);
 		number->number = temp;
 		number->next = NULL;
 		ft_lstadd_back(&stack->stack_a, number);
 		i++;
 	}
+}
+
+int	init_stacks(t_stack *stack, int argc, char **argv)
+{
+	stack->stack_a = NULL;
+	stack->stack_b = NULL;
+	stack->len_args = argc;
+	fill_stack_a(stack, argv);
+	stack->len_a = stack->len_args;
+	stack->len_b = 0;
 	return (0);
 }
