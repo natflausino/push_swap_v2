@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:49:12 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/12 01:22:31 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/12 22:15:27 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void	set_sort(t_stack *stack)
 		else
 			set_swap(stack->stack_a, NULL);
 	}
-	if (stack->len_args == 3)
+	else if (stack->len_args == 3)
 		sort_three(stack);
-	if (stack->len_args <= 10)
+	else if (stack->len_args <= 10)
 		sort_five(stack);
 }
