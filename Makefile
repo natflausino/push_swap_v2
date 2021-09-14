@@ -6,7 +6,7 @@
 #    By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/12 19:56:38 by csantos-         ###   ########.fr        #
+#    Updated: 2021/09/14 00:17:01 by csantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRC = $(SRC_PATH)main.c\
 			$(UTILS_PATH)ft_lstadd_front.c\
 			$(UTILS_PATH)ft_lstlast.c\
 			$(UTILS_PATH)ft_lstsize.c\
+			$(UTILS_PATH)ft_lstnew.c\
+			$(UTILS_PATH)ft_lstduplicate.c\
 
 
 OBJ = $(SRC:.c=.o)
