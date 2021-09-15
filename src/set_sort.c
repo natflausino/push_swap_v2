@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:49:12 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/14 23:15:51 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/15 00:16:16 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,15 @@ int	index_counter(t_list *stack_a, t_list *temp)
 	int max_ind;
 
 	duplicate = ft_lstduplicate(stack_a);
-	find_middle(duplicate);
 	sort_duplicate(&duplicate);
+	t_list	*node;
+
+	node = duplicate;
+	while (node)
+	{
+		printf("Duplicate: %i\n", node->number);
+		node = node->next;
+	}
 	ft_lst_free(&duplicate);
 	return (max_ind - min_ind + 1);
 }
