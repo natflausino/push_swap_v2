@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:49:12 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/14 00:09:20 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/14 23:15:51 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,56 @@ void	send_min(t_stack *stack, t_list **stack_x, t_list **stack_y)
 	set_push(stack, 'b');
 }
 
+t_list	*merge_sorted_duplicate(t_list *first, t_list *second)
+{
+	if (!first)
+		return (second);
+	if (!second)
+		return (first);
+	if (first->number < second->number)
+	{
+		first->next = merge_sorted_duplicate(first->next, second);
+		return (first);
+	}
+	else
+	{
+		second->next = merge_sorted_duplicate(first, second->next);
+		return (second);
+	}
+}
+
+t_list	*find_middle(t_list *stack)
+{
+	t_list	*future;
+	t_list	*present;
+
+	future = stack;
+	present = stack;
+	while (future->next && future->next->next)
+	{
+		future = future->next->next;
+		present = present->next;
+	}
+	future = present->next;
+	present->next = 0;
+	return (future);
+}
+
+void	sort_duplicate(t_list **duplicate)
+{
+	t_list	*first;
+	t_list	*second;
+
+	first = *duplicate;
+	if (!first || !first->next)
+		return ;
+	second = find_middle(first);
+	sort_duplicate(&first);
+	sort_duplicate(&second);
+	*duplicate = merge_sorted_duplicate(first, second);
+	
+}
+
 int	index_counter(t_list *stack_a, t_list *temp)
 {
 	t_list *duplicate;
@@ -81,24 +131,24 @@ int	index_counter(t_list *stack_a, t_list *temp)
 	int max_ind;
 
 	duplicate = ft_lstduplicate(stack_a);
+	find_middle(duplicate);
 	sort_duplicate(&duplicate);
-	min_ind = minimum_value(duplicate);
-	max_ind = maximum_value(duplicate);
-	ft_list_free(duplicate);
+	ft_lst_free(&duplicate);
 	return (max_ind - min_ind + 1);
 }
 
-void	sort_big(t_stack **stack, t_list **temp, int index)
+void	sort_big(t_list **stack_a, t_list **stack_b, t_list **temp, int index)
 {
 	if (ft_lstsize(*temp) != 2)
 	{
-		ft_list_free(*temp);
+		ft_lst_free(temp);
 		return ;
 	}
-	if (index_counter(*stack->stack_a, *temp) >= 20)
-	{
-		
-	}
+	index_counter(*stack_a, *temp);
+	//if (index_counter(*stack->stack_a, *temp) >= 20)
+	//{
+	//	
+	//}
 }
 
 void	sort_five(t_stack *stack)
@@ -164,16 +214,7 @@ void	set_sort(t_stack *stack)
 	{
 		temp = ft_lstnew(minimum_value(stack->stack_a));
 		ft_lstadd_back(&temp, ft_lstnew(maximum_value(stack->stack_a)));
-		sort_big(&stack, &temp);
-
-		/*t_list *print;
-
-		print = temp;
-		while (print)
-		{
-			printf("Stack b: %i\n", print->number);
-			print = print->next;
-		}*/
-		ft_list_free(&temp);
+		sort_big(&stack->stack_a, &stack->stack_b, &temp, 1);
+		ft_lst_free(&temp);
 	}
 }

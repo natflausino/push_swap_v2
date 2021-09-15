@@ -6,13 +6,13 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/13 23:42:42 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/14 22:53:04 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_list_free(t_list **lst)
+void	ft_lst_free(t_list **lst)
 {
 	t_list	*next;
 
@@ -29,8 +29,8 @@ void	ft_list_free(t_list **lst)
 
 void	free_stack(t_stack *stack)
 {
-	ft_list_free(&stack->stack_a);
-	ft_list_free(&stack->stack_b);
+	ft_lst_free(&stack->stack_a);
+	ft_lst_free(&stack->stack_b);
 }
 
 void	test_print(t_stack *stack)

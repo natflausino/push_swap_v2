@@ -6,14 +6,14 @@
 #    By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/14 00:17:01 by csantos-         ###   ########.fr        #
+#    Updated: 2021/09/14 23:41:18 by csantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CC = clang
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 INCLUDES = ./includes/push_swap.h
 
 SRC_PATH = ./src/

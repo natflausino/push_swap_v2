@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 23:13:59 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/14 00:16:43 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/14 22:52:39 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void						ft_lstadd_front(t_list **lst, t_list *new);
 t_list						*ft_lstlast(t_list *lst);
 int							ft_lstsize(t_list *lst);
 t_list						*ft_lstnew(int number);
-void						ft_list_free(t_list **lst);
+void						ft_lst_free(t_list **lst);
 t_list	*ft_lstduplicate(t_list *lst);
 void	test_print(t_stack *stack);
 
