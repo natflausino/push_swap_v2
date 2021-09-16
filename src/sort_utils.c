@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 20:38:43 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/15 23:06:05 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/16 20:10:09 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int equal_value(t_list *stack, int value)
 {
 	int i;
-	
+
 	i = 0;
 	while (stack != NULL)
 	{
@@ -63,6 +63,7 @@ void	send_min(t_stack *stack, t_list **stack_x, t_list **stack_y)
 {
 	int min_num;
 
+	stack_y = (t_list **)stack_y;
 	min_num = minimum_value(*stack_x);
 	while ((*stack_x)->number != min_num)
 	{

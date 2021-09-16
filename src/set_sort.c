@@ -6,7 +6,7 @@
 /*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:49:12 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/16 02:15:44 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/16 20:03:20 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	get_next_min(t_list	*stack_a, t_list **temp)
 void	merge_sorted(t_list **stack_a, t_list **stack_b, t_list *temp)
 {
 	t_list	*duplicate;
+	t_list	*tmp;
 
 	duplicate = ft_lstduplicate(*stack_b);
 	sort_duplicate(&duplicate);
@@ -63,8 +64,8 @@ void	merge_sorted(t_list **stack_a, t_list **stack_b, t_list *temp)
 		if ((*stack_b)->number == duplicate->number)
 		{
 			set_push(stack_a, stack_b, 'a');
-			duplicate = duplicate->next;
-			if (ft_lstsize(*stack_b) && (*stack_b)->number != duplicate->number
+			tmp = duplicate->next;
+			if (ft_lstsize(*stack_b) && (*stack_b)->number != tmp->number
 				&& (*stack_b)->number != maximum_value(*stack_b))
 				set_rotate(stack_a, stack_b);
 			else
@@ -148,28 +149,6 @@ void	swap_temp(t_list **stack)
 	(*stack)->next->number = aux;
 }
 
-	void print (t_list *refs)
-{
-	t_list	*node;
-		node = refs;
-		while (node)
-		{
-			printf("REFS ANTES: %i\n", node->number);
-			node = node->next;
-		}
-}
-
-void print_two (t_list *refs)
-{
-	t_list	*node;
-		node = refs;
-		while (node)
-		{
-			printf("REFS DEPOIS: %i\n", node->number);
-			node = node->next;
-		}
-}
-
 void	ft_lstclear(t_list **lst)
 {
 	t_list	*elem;
@@ -184,14 +163,11 @@ void	ft_lstclear(t_list **lst)
 
 void	sort_big(t_list **stack_a, t_list **stack_b, t_list **temp, int index)
 {
-	//if (is_big_sorted(*stack_a) == 1 && !ft_lstsize(*stack_b))
-		//return ;
 	if (ft_lstsize(*temp) == 1)
 	{
 		ft_lst_free(temp);
 		return ;
 	}
-	//index_counter(*stack_a, *temp);
 	if (index_counter(*stack_a, *temp) >= 20 && (ft_lstsize(*temp) == 2))
 		generate_block(*stack_a, temp, 1);
 	if (!ft_lstsize(*stack_b))
@@ -203,13 +179,8 @@ void	sort_big(t_list **stack_a, t_list **stack_b, t_list **temp, int index)
 		merge_max_to_a(stack_a, stack_b, *temp);
 	else
 	{
-		print(*temp);
 		merge_sorted(stack_a, stack_b, *temp);
 		ft_lstclear(temp);
-		print_two(*temp);
-		//rotate(temp);
-		//swap_temp(temp);
-		//ft_lst_free(temp);
 	}
 	sort_big(stack_a, stack_b, temp, ++index);
 }
@@ -261,9 +232,7 @@ void	sort_three(t_stack *stack)
 void	set_sort(t_stack *stack)
 {
 	t_list	*temp;
-	int	i;
 
-	i = 0;
 	if (stack->len_args == 2)
 	{
 		if (stack->stack_a->number < stack->stack_a->next->number)
@@ -279,15 +248,6 @@ void	set_sort(t_stack *stack)
 	{
 		temp = ft_lstnew(minimum_value(stack->stack_a));
 		ft_lstadd_back(&temp, ft_lstnew(maximum_value(stack->stack_a)));
-		t_list	*node;
-		node = temp;
-		while (node)
-		{
-			printf("REFS ANTES ANTES: %i\n", node->number);
-			node = node->next;
-		}
-		sort_big(&stack->stack_a, &stack->stack_b, &temp, i);
-
-		//ft_lst_free(&temp);
+		sort_big(&stack->stack_a, &stack->stack_b, &temp, 0);
 	}
 }

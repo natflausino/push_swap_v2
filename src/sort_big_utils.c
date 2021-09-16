@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 21:29:58 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/15 23:07:26 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/16 19:49:28 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 {
 	int	block_size;
 	int	first;
-	t_stack stack;
+	//t_stack stack;
 
 	block_size = index_counter(*stack_a, temp);
 	while (ft_lstsize(*stack_b) < block_size)
@@ -50,7 +50,7 @@ void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 int find_position(t_list *stack, int position)
 {
 	int i;
-	
+
 	i = 0;
 	while (stack != NULL)
 	{
@@ -75,7 +75,7 @@ void	generate_block(t_list *stack_a, t_list **temp, int flag)
 	{
 		min_ind = equal_value(duplicate, (*temp)->number);
 		max_ind = equal_value(duplicate, (*temp)->next->number);
-		new = find_position(duplicate, ((max_ind - min_ind) / 2) + min_ind + 3);
+		new = find_position(duplicate, ((max_ind - min_ind) / 2 + min_ind + 3)); //((max_ind - min_ind) / 2) + min_ind + 3);
 	}
 	else
 		new = find_position(duplicate, (ft_lstsize(duplicate) / 2));
@@ -131,7 +131,7 @@ void	sort_duplicate(t_list **duplicate)
 	sort_duplicate(&first);
 	sort_duplicate(&second);
 	*duplicate = merge_sorted_duplicate(first, second);
-	
+
 }
 
 int	index_counter(t_list *stack_a, t_list *temp)

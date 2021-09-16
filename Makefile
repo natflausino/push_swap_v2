@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/15 21:36:36 by csantos-         ###   ########.fr        #
+#    Updated: 2021/09/16 20:07:07 by nbarreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CC = clang
-FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 INCLUDES = ./includes/push_swap.h
 
 SRC_PATH = ./src/
@@ -46,6 +46,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+
+.c.o: $(SRC_PATH)/%.c
+		$(CC) $(FLAGS) -c $< -o $@
 
 git:
 	@git add .
