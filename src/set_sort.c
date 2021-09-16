@@ -6,165 +6,184 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:49:12 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/15 00:43:08 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/16 01:18:41 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int equal_value(t_list *stack, int value)
-{
-	int i;
-	
-	i = 0;
-	while (stack != NULL)
-	{
-		if (stack->number == value)
-			return (i);
-		stack = stack->next;
-		i++;
-	}
-	return (INT_MIN);
-}
 
-int maximum_value(t_list *stack)
+int is_big_sorted(t_list *stack_a)
 {
 	int	value;
 
-	value = stack->number;
-	while (stack != NULL)
+	value = stack_a->number;
+	while (stack_a != NULL)
 	{
-		if (stack->number > value)
+		if (value < stack_a->next->number)
 		{
-			value = stack->number;
+			value = stack_a->next->number;
+			stack_a = stack_a->next;
 		}
-		stack = stack->next;
-	}
-	return (value);
-}
-
-int minimum_value(t_list *stack)
-{
-	int	value;
-
-	value = stack->number;
-	while (stack != NULL)
-	{
-		if (stack->number < value)
-		{
-			value = stack->number;
-		}
-		stack = stack->next;
-	}
-	return (value);
-}
-
-void	send_min(t_stack *stack, t_list **stack_x, t_list **stack_y)
-{
-	int min_num;
-
-	min_num = minimum_value(*stack_x);
-	while ((*stack_x)->number != min_num)
-	{
-		if ((*stack_x)->next->number != min_num)
-			set_reverse_rotate(stack_x, NULL);
 		else
-			set_rotate(stack_x, NULL);
+			return (0);
 	}
-	set_push(stack, 'b');
+	return (1);
 }
 
-t_list	*merge_sorted_duplicate(t_list *first, t_list *second)
+int	get_next_min(t_list	*stack_a, t_list **temp)
 {
-	if (!first)
-		return (second);
-	if (!second)
-		return (first);
-	if (first->number < second->number)
-	{
-		first->next = merge_sorted_duplicate(first->next, second);
-		return (first);
-	}
-	else
-	{
-		second->next = merge_sorted_duplicate(first, second->next);
-		return (second);
-	}
-}
-
-t_list	*find_middle(t_list *stack)
-{
-	t_list	*future;
-	t_list	*present;
-
-	future = stack;
-	present = stack;
-	while (future->next && future->next->next)
-	{
-		future = future->next->next;
-		present = present->next;
-	}
-	future = present->next;
-	present->next = 0;
-	return (future);
-}
-
-void	sort_duplicate(t_list **duplicate)
-{
-	t_list	*first;
-	t_list	*second;
-
-	first = *duplicate;
-	if (!first || !first->next)
-		return ;
-	second = find_middle(first);
-	sort_duplicate(&first);
-	sort_duplicate(&second);
-	*duplicate = merge_sorted_duplicate(first, second);
-	
-}
-
-int	index_counter(t_list *stack_a, t_list *temp)
-{
-	t_list *duplicate;
-	int min_ind;
-	int max_ind;
+	t_list	*duplicate;
+	int		position;
+	int		min_number;
 
 	duplicate = ft_lstduplicate(stack_a);
 	sort_duplicate(&duplicate);
-	min_ind = equal_value(duplicate, temp->number);
-	max_ind = equal_value(duplicate, temp->number);
-	/*t_list	*node;
-
-	node = duplicate;
-	while (node)
+	position = equal_value(duplicate, (*temp)->next->number);
+	min_number = find_position(duplicate, position);
+	if (min_number == ft_lstlast(duplicate)->number)
 	{
-		printf("Duplicate: %i\n", node->number);
-		node = node->next;
-	}*/
+		ft_lst_free(&duplicate);
+		return (min_number);
+	}
+	else
+		min_number = find_position(duplicate, position + 1);
 	ft_lst_free(&duplicate);
-	return (max_ind - min_ind + 1);
+	return (min_number);
+}
+
+void	merge_sorted(t_list **stack_a, t_list **stack_b, t_list *temp)
+{
+	t_list	*duplicate;
+
+	duplicate = ft_lstduplicate(*stack_b);
+	sort_duplicate(&duplicate);
+	while (ft_lstsize(*stack_b))
+	{
+		if ((*stack_b)->number == duplicate->number)
+		{
+			set_push(stack_a, stack_b, 'a');
+			duplicate = duplicate->next;
+			if (ft_lstsize(*stack_b) && (*stack_b)->number != duplicate->number 
+				&& (*stack_b)->number != maximum_value(*stack_b))
+				set_rotate(stack_a, stack_b);
+			else
+				set_rotate(stack_a, NULL);
+		}
+		else if ((*stack_b)->number == maximum_value(*stack_b))
+			set_push(stack_a, stack_b, 'a');
+		else
+			set_rotate(NULL, stack_b);
+	}
+	while (ft_lstlast(*stack_a)->number != temp->next->number)
+		set_rotate(stack_a, NULL);
+	temp->next->number = get_next_min(*stack_a, &temp);
+	ft_lst_free(&duplicate);
+}
+
+int check_bigger(t_list *stack, int value)
+{
+	while (stack != NULL)
+	{
+		if (stack->number > value)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+
+void	merge_max_to_a(t_list **stack_a, t_list **stack_b, t_list *temp)
+{
+	generate_block(*stack_b, &temp, 0);
+	while (check_bigger(*stack_b, temp->next->number))
+	{
+		if ((*stack_b)->number == minimum_value(*stack_b))
+		{
+			set_push(stack_a, stack_b, 'a');
+			if ((*stack_b)->number != minimum_value(*stack_b) 
+				&& (*stack_b)->number <= temp->next->number)
+				set_rotate(stack_a, stack_b);
+			else
+				set_rotate(stack_a, NULL);
+		}
+		else if ((*stack_b)->number > temp->next->number)
+			set_push(stack_a, stack_b, 'a');
+		else
+			set_rotate(NULL, stack_b);
+	}
+}
+
+void	rotate_to_sort(t_list **stack_a, t_list *temp)
+{
+	t_list	*duplicate;
+	int		number;
+	int		index;
+
+	duplicate = ft_lstduplicate(*stack_a);
+	ft_lstadd_front(&duplicate, ft_lstnew(temp->number));
+	sort_duplicate(&duplicate);
+	number = find_position(duplicate, equal_value(duplicate, temp->number) - 1);
+	ft_lst_free(&duplicate);
+	index = equal_value(*stack_a, number);
+	if (number == INT_MIN || index == INT_MIN)
+		return ;
+	if (index <= ft_lstsize(*stack_a) / 2)
+	{
+		while (ft_lstlast(*stack_a)->number != number) //bruxaria nivel choi máxima
+			set_rotate(stack_a, NULL);
+	}
+	else
+	{
+		while (ft_lstlast(*stack_a)->number != number) //bruxaria nivel choi máxima
+			set_reverse_rotate(stack_a, NULL);
+	}
+}
+
+void	swap_temp(t_list **stack)
+{
+	int	aux;
+
+	aux = (*stack)->number;
+	(*stack)->number = (*stack)->next->number;
+	(*stack)->next->number = aux;
 }
 
 void	sort_big(t_list **stack_a, t_list **stack_b, t_list **temp, int index)
 {
-	if (ft_lstsize(*temp) != 2)
+	if (is_big_sorted(*stack_a) == 1 && !ft_lstsize(*stack_b))
+		return ;
+	if (ft_lstsize(*temp) == 1)
 	{
 		ft_lst_free(temp);
 		return ;
 	}
-	index_counter(*stack_a, *temp);
-	//if (index_counter(*stack->stack_a, *temp) >= 20)
-
+	//index_counter(*stack_a, *temp);
+	if (index_counter(*stack_a, *temp) >= 20 && (ft_lstsize(*temp) == 2))
+		generate_block(*stack_a, temp, 1);
+	if (!ft_lstsize(*stack_b))
+	{
+		split_block(stack_a, stack_b, *temp);
+		rotate_to_sort(stack_a, *temp);
+	}
+	if (ft_lstsize(*stack_b) >= 20)
+		merge_max_to_a(stack_a, stack_b, *temp);
+	else
+	{
+		merge_sorted(stack_a, stack_b, *temp);
+		//rotate(temp);
+		//swap_temp(temp);
+		//ft_lst_free(temp);
+	}
+	sort_big(stack_a, stack_b, temp, ++index);
 }
 
 void	sort_five(t_stack *stack)
 {
-	while (stack->len_a > 3)
+	while (ft_lstsize(stack->stack_a) > 3)
 		send_min(stack, &stack->stack_a, &stack->stack_b);
 	sort_three(stack);
-	while (stack->len_b)
-		set_push(stack, 'a');
+	while (ft_lstsize(stack->stack_b))
+		set_push(&stack->stack_a, &stack->stack_b, 'a');
 }
 
 void	sort_three_b(t_stack *stack, int first, int second, int third)
@@ -221,7 +240,7 @@ void	set_sort(t_stack *stack)
 	{
 		temp = ft_lstnew(minimum_value(stack->stack_a));
 		ft_lstadd_back(&temp, ft_lstnew(maximum_value(stack->stack_a)));
-		sort_big(&stack->stack_a, &stack->stack_b, &temp, 1);
-		ft_lst_free(&temp);
+		sort_big(&stack->stack_a, &stack->stack_b, &temp, 0);
+		//ft_lst_free(&temp);
 	}
 }

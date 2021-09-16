@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 23:25:25 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/11 21:46:01 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/15 22:51:12 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,5 @@ int	init_stacks(t_stack *stack, int argc, char **argv)
 	stack->stack_b = NULL;
 	stack->len_args = argc;
 	fill_stack_a(stack, argv);
-	stack->len_a = stack->len_args;
-	stack->len_b = 0;
 	return (0);
 }

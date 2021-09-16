@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/14 22:53:04 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/16 00:32:30 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int argc, char **argv)
 		init_stacks(&stack, argc, argv);
 		set_sort(&stack);
 	}
-	test_print(&stack);
+	//test_print(&stack);
 
 	free_stack(&stack);
 }

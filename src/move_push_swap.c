@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:57:46 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/12 00:25:43 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/15 23:04:43 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,16 @@ void	push(t_list **stack_x, t_list **stack_y) //top x -> top y
 	}
 }
 
-void	set_push(t_stack *stack, int c)
+void	set_push(t_list **stack_a, t_list **stack_b, int c)
 {
 		if (c == 'a')
 		{
-			push(&stack->stack_b, &stack->stack_a);
-			stack->len_a++;
-			stack->len_b--;
+			push(stack_b, stack_a);
 			write(1, "pa\n", 3);
 		}
 		if (c == 'b')
 		{
-			push(&stack->stack_a, &stack->stack_b);
-			stack->len_b++;
-			stack->len_a--;
+			push(stack_a, stack_b);
 			write(1, "pb\n", 3);
 		}
 }

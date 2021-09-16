@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 23:13:59 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/14 22:52:39 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/16 01:04:13 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ typedef struct s_stack
 	t_list	*stack_a;
 	t_list	*stack_b;
 	int		len_args;
-	int		len_a;
-	int		len_b;
 }	t_stack;
 
 /*
@@ -48,6 +46,22 @@ int							init_stacks(t_stack *stack, int argc, char **argv);
 void						fill_stack_a(t_stack *stack, char **argv);
 void						set_sort(t_stack *stack);
 void						sort_three(t_stack *stack);
+void						sort_big(t_list **stack_a, t_list **stack_b,
+								t_list **temp, int index);
+int							equal_value(t_list *stack, int value);
+int							maximum_value(t_list *stack);
+int							minimum_value(t_list *stack);
+void						send_min(t_stack *stack, t_list **stack_x,
+								t_list **stack_y);
+int							index_counter(t_list *stack_a, t_list *temp);
+void						sort_duplicate(t_list **duplicate);
+t_list						*find_middle(t_list *stack);
+t_list						*merge_sorted_duplicate(t_list *first, t_list *second);
+void						generate_block(t_list *stack_a, t_list **temp, int flag);
+void						split_block(t_list **stack_a, t_list **stack_b, t_list *temp);
+int							find_position(t_list *stack, int position);
+int							move_to_top(t_list *stack_a, t_list *temp);
+
 
 /*
 ** BASIC_MOVEMENTS
@@ -57,7 +71,7 @@ void						swap(t_list *stack);
 void						rotate(t_list **stack);
 void						reverse_rotate(t_list **stack);
 void						push(t_list **stack_x, t_list **stack_y);
-void						set_push(t_stack *stack, int c);
+void						set_push(t_list **stack_a, t_list **stack_b, int c);
 void						set_rotate(t_list **a, t_list **b);
 void						set_swap(t_list *a, t_list *b);
 void						set_reverse_rotate(t_list **a, t_list **b);
@@ -78,7 +92,7 @@ t_list						*ft_lstlast(t_list *lst);
 int							ft_lstsize(t_list *lst);
 t_list						*ft_lstnew(int number);
 void						ft_lst_free(t_list **lst);
-t_list	*ft_lstduplicate(t_list *lst);
-void	test_print(t_stack *stack);
+t_list						*ft_lstduplicate(t_list *lst);
+void						test_print(t_stack *stack);
 
 #endif

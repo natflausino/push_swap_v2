@@ -6,7 +6,7 @@
 #    By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/14 23:41:18 by csantos-         ###   ########.fr        #
+#    Updated: 2021/09/15 21:36:36 by csantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC = $(SRC_PATH)main.c\
 			$(SRC_PATH)set_sort.c\
 			$(SRC_PATH)move_rotate_reverse.c\
 			$(SRC_PATH)move_push_swap.c\
+			$(SRC_PATH)sort_utils.c\
+			$(SRC_PATH)sort_big_utils.c\
 			$(UTILS_PATH)ft_split.c\
 			$(UTILS_PATH)ft_isdigit.c\
 			$(UTILS_PATH)ft_isspace.c\
