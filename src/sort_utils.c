@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 20:38:43 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/16 20:10:09 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/16 23:57:12 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,17 @@ int maximum_value(t_list *stack)
 int minimum_value(t_list *stack)
 {
 	int	value;
+	t_list *aux;
 
+	aux = stack;
 	value = stack->number;
-	while (stack != NULL)
+	while (aux != NULL)
 	{
-		if (stack->number < value)
+		if (aux->number <= value)
 		{
-			value = stack->number;
+			value = aux->number;
 		}
-		stack = stack->next;
+		aux = aux->next;
 	}
 	return (value);
 }

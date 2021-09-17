@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/16 02:13:34 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/17 01:14:24 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,15 @@ int	main(int argc, char **argv)
 		return (0);
 	argv = &argv[1];
 	argc--;
-	if (argc == 1)
-		argv = verify_string(&argc, argv);
+	//if (argc == 1)
+	//	argv = verify_string(&argc, argv);
 	verify_args(argc, argv);
 	if (argc > 1)
 	{
 		init_stacks(&stack, argc, argv);
 		set_sort(&stack);
+		free_stack(&stack);
 	}
-	test_print(&stack);
-
-	free_stack(&stack);
+	//free_stack(&stack);
+	//test_print(&stack);	
 }
