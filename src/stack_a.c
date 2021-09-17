@@ -6,11 +6,22 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 23:25:25 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/17 01:02:25 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/17 16:34:21 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	is_stack_sorted(t_list *stack)
+{
+	while(stack->next != NULL)
+	{
+		if (stack->number > stack->next->number)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
 
 void	fill_stack_a(t_stack *stack, char **argv)
 {

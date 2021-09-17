@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:49:12 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/17 00:45:10 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/17 18:22:39 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,12 +149,18 @@ void	rotate_to_sort(t_list **stack_a, t_list *temp)
 	if (index <= ft_lstsize(*stack_a) / 2)
 	{
 		while (ft_lstlast(*stack_a)->number != number) //bruxaria nivel choi máxima
+		{
+			write(1, "Rotate_to_sort\n", 15);
 			set_rotate(stack_a, NULL);
+		}
 	}
 	else
 	{
-		while (ft_lstlast(*stack_a)->number != number) //bruxaria nivel choi máxima
+		while (ft_lstlast(*stack_a)->number != number)
+		{
+			write(1, "Reverse_to_sort\n", 16);
 			set_reverse_rotate(stack_a, NULL);
+		} //bruxaria nivel choi máxima
 	}
 }
 
@@ -295,12 +301,15 @@ void	set_sort(t_stack *stack)
 	}
 	else if (stack->len_args == 3)
 		sort_three(stack);
-	else if (stack->len_args <= 19)
-		sort_five(stack);
-	else
+	else if (!is_stack_sorted(stack->stack_a))
 	{
-		temp = ft_lstnew(minimum_value(stack->stack_a));
-		ft_lstadd_back(&temp, ft_lstnew(maximum_value(stack->stack_a)));
-		sort_big(&stack->stack_a, &stack->stack_b, &temp, 0);
+		if (stack->len_args <= 19)
+			sort_five(stack);
+		else
+		{
+			temp = ft_lstnew(minimum_value(stack->stack_a));
+			ft_lstadd_back(&temp, ft_lstnew(maximum_value(stack->stack_a)));
+			sort_big(&stack->stack_a, &stack->stack_b, &temp, 0);
+		}
 	}
 }

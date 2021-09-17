@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 21:29:58 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/16 19:49:28 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/17 18:56:24 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	move_to_top(t_list *stack_a, t_list *temp)
 	int	max;
 	int	min;
 
-	min = temp->number;
+	min = minimum_value(stack_a); //temp->number; ;
 	max = temp->next->number;
 	first = 0;
 	while (stack_a != NULL)
@@ -41,8 +41,12 @@ void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 	while (ft_lstsize(*stack_b) < block_size)
 	{
 		first = move_to_top(*stack_a, temp);
-		while (first--)
+		while (first)
+		{
+			write(1, "Split_block\n", 12);
 			set_rotate(stack_a, 0);
+			first--;
+		}
 		set_push(stack_a, stack_b, 'b');
 	}
 }

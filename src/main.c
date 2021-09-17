@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/17 01:14:24 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/17 17:20:53 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,39 @@ char	**verify_string(int *argc, char **argv)
 	int	i;
 
 	i = 0;
+	if (!(argv[0][0]))
+		exit(0);
 	argv = ft_split(argv[0], ' ');
 	while (argv[i] != NULL)
 		i++;
-	(*argc) = i;
+	*argc = i;
 	return (argv);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
+	int		string_true;
 
+	string_true = 0;
 	if (argc == 1)
 		return (0);
 	argv = &argv[1];
 	argc--;
 	//if (argc == 1)
+	//{
 	//	argv = verify_string(&argc, argv);
+	//	string_true = 1;
+//	}
 	verify_args(argc, argv);
 	if (argc > 1)
 	{
 		init_stacks(&stack, argc, argv);
 		set_sort(&stack);
+		//test_print(&stack);	
 		free_stack(&stack);
 	}
+	if (string_true == 1)
+			free(argv);
 	//free_stack(&stack);
-	//test_print(&stack);	
 }

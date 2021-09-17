@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 23:13:59 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/16 01:04:13 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/17 18:22:47 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void						checker_duplicate(char **argv);
 int							exit_errors(void);
 int							init_stacks(t_stack *stack, int argc, char **argv);
 void						fill_stack_a(t_stack *stack, char **argv);
+int							is_stack_sorted(t_list *stack);
 void						set_sort(t_stack *stack);
 void						sort_three(t_stack *stack);
 void						sort_big(t_list **stack_a, t_list **stack_b,
@@ -94,5 +95,6 @@ t_list						*ft_lstnew(int number);
 void						ft_lst_free(t_list **lst);
 t_list						*ft_lstduplicate(t_list *lst);
 void						test_print(t_stack *stack);
+void						free_stack(t_stack *stack);
 
 #endif
