@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/13 18:44:00 by nbarreir          #+#    #+#              #
-#    Updated: 2021/09/16 20:07:07 by nbarreir         ###   ########.fr        #
+#    Updated: 2021/09/17 01:13:08 by csantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,17 +27,17 @@ SRC = $(SRC_PATH)main.c\
 			$(SRC_PATH)move_push_swap.c\
 			$(SRC_PATH)sort_utils.c\
 			$(SRC_PATH)sort_big_utils.c\
-			$(UTILS_PATH)ft_split.c\
-			$(UTILS_PATH)ft_isdigit.c\
-			$(UTILS_PATH)ft_isspace.c\
-			$(UTILS_PATH)ft_atoll.c\
-			$(UTILS_PATH)ft_strncmp.c\
-			$(UTILS_PATH)ft_lstadd_back.c\
-			$(UTILS_PATH)ft_lstadd_front.c\
-			$(UTILS_PATH)ft_lstlast.c\
-			$(UTILS_PATH)ft_lstsize.c\
-			$(UTILS_PATH)ft_lstnew.c\
-			$(UTILS_PATH)ft_lstduplicate.c\
+			$(SRC_PATH)ft_split.c\
+			$(SRC_PATH)ft_isdigit.c\
+			$(SRC_PATH)ft_isspace.c\
+			$(SRC_PATH)ft_atoll.c\
+			$(SRC_PATH)ft_strncmp.c\
+			$(SRC_PATH)ft_lstadd_back.c\
+			$(SRC_PATH)ft_lstadd_front.c\
+			$(SRC_PATH)ft_lstlast.c\
+			$(SRC_PATH)ft_lstsize.c\
+			$(SRC_PATH)ft_lstnew.c\
+			$(SRC_PATH)ft_lstduplicate.c\
 
 
 OBJ = $(SRC:.c=.o)
@@ -59,7 +59,7 @@ git:
 clean:
 	rm -f $(OBJ)
 
-fclean:
+fclean:	clean
 	rm -f $(NAME) $(OBJ)
 
 re: fclean all

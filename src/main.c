@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/16 02:13:34 by nbarreir         ###   ########.fr       */
+/*   Updated: 2021/09/17 23:02:20 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	test_print(t_stack *stack)
 	node = stack->stack_a;
 	while (node)
 	{
-		printf("Stack a: %i\n", node->number);
+		//printf("Stack a: %i\n", node->number);
 		node = node->next;
 	}
 	test = stack->stack_b;
 	while (test)
 	{
-		printf("Stack b: %i\n", test->number);
+		//printf("Stack b: %i\n", test->number);
 		test = test->next;
 	}
 		/*
@@ -79,30 +79,39 @@ char	**verify_string(int *argc, char **argv)
 	int	i;
 
 	i = 0;
+	if (!(argv[0][0]))
+		exit(0);
 	argv = ft_split(argv[0], ' ');
 	while (argv[i] != NULL)
 		i++;
-	(*argc) = i;
+	*argc = i;
 	return (argv);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
+	int		string_true;
 
+	string_true = 0;
 	if (argc == 1)
 		return (0);
 	argv = &argv[1];
 	argc--;
-	if (argc == 1)
-		argv = verify_string(&argc, argv);
+	//if (argc == 1)
+	//{
+	//	argv = verify_string(&argc, argv);
+	//	string_true = 1;
+//	}
 	verify_args(argc, argv);
 	if (argc > 1)
 	{
 		init_stacks(&stack, argc, argv);
 		set_sort(&stack);
+		//test_print(&stack);	
+		free_stack(&stack);
 	}
-	test_print(&stack);
-
-	free_stack(&stack);
+	if (string_true == 1)
+			free(argv);
+	//free_stack(&stack);
 }
