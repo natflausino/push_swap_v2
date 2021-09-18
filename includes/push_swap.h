@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 23:13:59 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/18 02:41:02 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 03:17:11 by nbarreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-64#ifndef PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # define INT_MAX 2147483647
