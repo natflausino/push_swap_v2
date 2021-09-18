@@ -6,11 +6,11 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 23:13:59 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/17 20:39:24 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 02:41:02 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
+64#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # define INT_MAX 2147483647
@@ -48,7 +48,7 @@ int							is_stack_sorted(t_list *stack);
 void						set_sort(t_stack *stack);
 void						sort_three(t_stack *stack);
 void						sort_big(t_list **stack_a, t_list **stack_b,
-								t_list **temp, int index);
+								t_list **temp, int len);
 int							equal_value(t_list *stack, int value);
 int							maximum_value(t_list *stack);
 int							minimum_value(t_list *stack);

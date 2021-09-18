@@ -53,6 +53,17 @@ void	print2(t_list *stack, char *id)
 	}
 }
 
+void	ft_lstclear(t_list **lst)
+{
+	t_list	*elem;
+
+	if (!*lst)
+		return ;
+
+	elem = (*lst)->next;
+	free(*lst);
+	*lst = elem;
+}
 
 int is_big_sorted(t_list *stack_a)
 {
@@ -192,7 +203,39 @@ int check_bigger(t_list *stack, int value)
 
 void	merge_max_to_a(t_list **stack_a, t_list **stack_b, t_list *temp)
 {	
-	generate_block(*stack_b, &temp, 0);
+	int b_middle;
+	t_list *stack_middle;
+
+	stack_middle = temp;
+	//print(*stack_a, *stack_b, stack_middle);
+	b_middle = (ft_lstsize(*stack_b) / 2);
+	//printf("B_MIDDLE: %i\n", b_middle);
+	if (ft_lstsize(*stack_b) < 20)
+	{
+		return ;
+	}
+	else
+		generate_block(*stack_b, &stack_middle, 0);
+	//Vamo gente, ta quase
+	while (ft_lstsize(*stack_b) > b_middle)
+	{
+		if ((*stack_b)->number >= stack_middle->next->number)
+		{
+			set_push(stack_a, stack_b, 'a');
+		}
+		/*else if ((*stack_b)->number == minimum_value(*stack_b))
+		{
+			set_push(stack_a, stack_b, 'a');
+			set_rotate(stack_a, 0);
+		}*/
+		set_rotate(0, stack_b);
+		//exit(0);
+	}
+	//print(*stack_a, *stack_b, stack_middle);
+	//print(*stack_a, *stack_b, stack_middle);
+	//exit(0);
+	merge_max_to_a(stack_a, stack_b, stack_middle);
+	/*generate_block(*stack_b, &temp, 0);
 	while (check_bigger(*stack_b, temp->next->number))
 	{
 		if ((*stack_b)->number == minimum_value(*stack_b))
@@ -209,8 +252,7 @@ void	merge_max_to_a(t_list **stack_a, t_list **stack_b, t_list *temp)
 		else
 			set_rotate(NULL, stack_b);
 		//print(*stack_a, *stack_b, temp);
-		//exit(0);
-	}
+		//exit(0);*/
 }
 
 /* void	merge_max_to_a(t_list **stack_a, t_list **stack_b, t_list *temp)
@@ -292,19 +334,7 @@ void	swap_temp(t_list **stack)
 	(*stack)->next->number = aux;
 }
 
-void	ft_lstclear(t_list **lst)
-{
-	t_list	*elem;
-
-	if (!*lst)
-		return ;
-
-	elem = (*lst)->next;
-	free(*lst);
-	*lst = elem;
-}
-
-void	sort_big(t_list **stack_a, t_list **stack_b, t_list **temp, int index)
+void	sort_big(t_list **stack_a, t_list **stack_b, t_list **temp, int len)
 {
 	//print(*stack_a, *stack_b, *temp);
 	if (ft_lstsize(*temp) == 1)
@@ -318,41 +348,26 @@ void	sort_big(t_list **stack_a, t_list **stack_b, t_list **temp, int index)
 	if (!ft_lstsize(*stack_b))
 	{
 		split_block(stack_a, stack_b, *temp);
-		//t_list *lst = ft_lstlast(*stack_a)
-		//while(lst->number != (*temp)->number - 1)
-		//{
-			//set_reverse_rotate(stack_a, 0);
-			//lst = ft_lstlast(*stack_a)
-		//}
-		
-/* 		printf("----------------\n");
-		print2(*stack_b, "b");
-		printf("----------------\n");
-		exit(0); */
 		rotate_to_sort(stack_a, *temp);
 	}
-	/*if (ft_lstsize(*stack_b) >= 20)
+	if (ft_lstsize(*stack_b))
 	{
 		//print(*stack_a, *stack_b, *temp);
 		//merge_sorted(stack_a, stack_b, *temp);
-		printf("MERGE MAX\n");
-		merge_max_to_a(stack_a, stack_b, *temp);
-		//exit(0);
-	}
-	else 
-	{
+		//printf("MERGE MAX\n");
+		if (len > 100)
+			merge_max_to_a(stack_a, stack_b, *temp);
+		//printf("MERGE SORT\n");
 		//print(*stack_a, *stack_b, *temp);
-		//merge_max_to_a(stack_a, stack_b, *temp);
-		printf("MERGE SORT\n");
 		merge_sorted(stack_a, stack_b, *temp);
-	}*/
+	}
 	//exit(0);
 	//print(*stack_a, *stack_b, *temp);
 	//printf("MERGE SORT\n");
-	merge_sorted(stack_a, stack_b, *temp);
+	//merge_sorted(stack_a, stack_b, *temp);
 	ft_lstclear(temp);
 	//print(*stack_a, *stack_b, *temp);
-	sort_big(stack_a, stack_b, temp, ++index);
+	sort_big(stack_a, stack_b, temp, len);
 }
 
 void	sort_five(t_stack *stack)
@@ -422,7 +437,7 @@ void	set_sort(t_stack *stack)
 		{
 			temp = ft_lstnew(minimum_value(stack->stack_a));
 			ft_lstadd_back(&temp, ft_lstnew(maximum_value(stack->stack_a)));
-			sort_big(&stack->stack_a, &stack->stack_b, &temp, 0);
+			sort_big(&stack->stack_a, &stack->stack_b, &temp, stack->len_args);
 		}
 	}
 }
