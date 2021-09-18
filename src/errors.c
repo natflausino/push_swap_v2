@@ -6,17 +6,16 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:06:42 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/11 21:32:56 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 18:38:45 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	exit_errors(void)
+void	exit_errors(void)
 {
 	write(1, "Error\n", 6);
-	exit(EXIT_FAILURE);
-	return (1);
+	exit(1);
 }
 
 void	checker_duplicate(char **argv)
@@ -41,10 +40,10 @@ void	checker_duplicate(char **argv)
 void	checker_errors(char **argv, int i)
 {
 	int		j;
-	double	temp;
+	double	tmp;
 
 	j = 0;
-	temp = 0;
+	tmp = 0;
 	if (argv[i][j] == '-')
 	{
 		j++;
@@ -58,7 +57,7 @@ void	checker_errors(char **argv, int i)
 		j++;
 	}
 	checker_duplicate(argv);
-	temp = ft_atoll(argv[i]);
-	if (temp > INT_MAX || temp < INT_MIN)
+	tmp = ft_atoi(argv[i]);
+	if (tmp > INT_MAX || tmp < INT_MIN)
 		exit_errors();
 }

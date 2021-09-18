@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lst_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/31 01:23:42 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/11 21:52:15 by csantos-         ###   ########.fr       */
+/*   Created: 2021/09/18 19:39:21 by csantos-          #+#    #+#             */
+/*   Updated: 2021/09/18 19:39:40 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_lst_free(t_list **lst)
 {
-	size_t	i;
+	t_list	*next;
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
+	if (!*lst)
+		return ;
+	while (*lst)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		next = (*lst)->next;
+		free(*lst);
+		*lst = next;
 	}
-	if (s1[i] == '\0' || s2[i] == '\0')
-	{
-		return (s1[i] - s2[i]);
-	}
-	return (0);
+	*lst = NULL;
 }

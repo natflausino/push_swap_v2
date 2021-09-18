@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 23:25:25 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/18 03:42:45 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 19:10:27 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	is_stack_sorted(t_list *stack)
 	return (1);
 }
 
-int	*replace_numbs(int argc, char **argv)
+int	*replace_numbers(int argc, char **argv)
 {
 	int	*numbers1;
 	int	*numbers2;
-	int	cont;
+	int	count;
 	int	i;
 	int	j;
 
@@ -35,16 +35,16 @@ int	*replace_numbs(int argc, char **argv)
 	numbers2 = malloc((argc) * sizeof(int *));
 	i = -1;
 	while (++i < argc)
-		numbers1[i] = ft_atoll(argv[i]);
+		numbers1[i] = ft_atoi(argv[i]);
 	i = -1;
 	while (++i < argc)
 	{
 		j = -1;
-		cont = 0;
+		count = 0;
 		while (++j < argc)
 			if (numbers1[i] > numbers1[j])
-				cont++;
-		numbers2[i] = cont + 1;
+				count++;
+		numbers2[i] = count + 1;
 	}
 	free(numbers1);
 	return (numbers2);
@@ -53,21 +53,21 @@ int	*replace_numbs(int argc, char **argv)
 void	fill_stack_a(t_stack *stack, int argc, char **argv)
 {
 	int		i;
-	double	temp;
-	t_list	*number;
+	double	tmp;
+	t_list	*numbers;
 	int		*nuns;
 
-	nuns = replace_numbs(argc, argv);
+	nuns = replace_numbers(argc, argv);
 	i = 0;
 	while (i < stack->len_args)
 	{
-		number = (t_list *)malloc(sizeof(t_list));
-		if (!number)
+		numbers = (t_list *)malloc(sizeof(t_list));
+		if (!numbers)
 			return ;
-		temp = nuns[i];
-		number->number = temp;
-		number->next = NULL;
-		ft_lstadd_back(&stack->stack_a, number);
+		tmp = nuns[i];
+		numbers->number = tmp;
+		numbers->next = NULL;
+		ft_lstadd_back(&stack->stack_a, numbers);
 		i++;
 	}
 	free(nuns);

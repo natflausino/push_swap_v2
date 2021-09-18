@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarreir <nbarreir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/31 01:23:33 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/04 19:23:28 by nbarreir         ###   ########.fr       */
+/*   Created: 2021/09/18 19:39:55 by csantos-          #+#    #+#             */
+/*   Updated: 2021/09/18 19:40:15 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_isspace(int chr)
+void	ft_lstclear(t_list **lst)
 {
-	if (chr == '\n' || chr == '\t' || chr == '\v' || chr == '\r'
-		|| chr == '\f' || chr == ' ')
-		return (1);
-	else
-		return (0);
+	t_list	*elem;
+
+	if (!*lst)
+		return ;
+	elem = (*lst)->next;
+	free(*lst);
+	*lst = elem;
 }
