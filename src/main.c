@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/17 17:20:53 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/17 23:02:20 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	test_print(t_stack *stack)
 	node = stack->stack_a;
 	while (node)
 	{
-		printf("Stack a: %i\n", node->number);
+		//printf("Stack a: %i\n", node->number);
 		node = node->next;
 	}
 	test = stack->stack_b;
 	while (test)
 	{
-		printf("Stack b: %i\n", test->number);
+		//printf("Stack b: %i\n", test->number);
 		test = test->next;
 	}
 		/*

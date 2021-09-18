@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mmoreira <mmoreira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 21:29:58 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/17 18:56:24 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/17 21:22:2:10 by mmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,70 @@ int	move_to_top(t_list *stack_a, t_list *temp)
 	return (first);
 }
 
+
+/*void	print3(t_list *stack, char *id)
+{
+
+	t_list *temp;
+
+	temp = stack;
+	//printf("stack %s\n", id);
+	while(temp)
+	{
+		//printf("%i\n",temp->number);
+		temp = temp->next;
+	}
+}*/
+
+
 void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
+{
+	t_list	*lst;
+	int		block_size;
+
+	int		first;
+	int		last;
+	int		cont;
+
+	block_size = temp->next->number - temp->number + 1;
+	while (ft_lstsize(*stack_b) < block_size)
+	{
+		first = 0;
+		lst = *stack_a;
+		while (lst)
+		{
+			if (lst->number >= temp->number 
+				&& lst->number <= temp->next->number)
+				break ;
+			first++;
+			lst = lst->next;
+		}
+		lst = *stack_a;
+		cont = 0;
+		while (lst)
+		{
+			cont++;
+			if (lst->number >= temp->number 
+				&& lst->number <= temp->next->number)
+				last = cont;
+			lst = lst->next;
+		}
+		if (first <= ft_lstsize(*stack_a) - last + 1)
+			while(first--)
+				set_rotate(stack_a, 0);
+		else
+			while(ft_lstsize(*stack_a) + 1 - last++)
+				set_reverse_rotate(stack_a, 0);
+		set_push(stack_a, stack_b, 'b');
+	}
+	//print3(*stack_a, "a");
+	//printf("----------------------------\nfirst: %i\nlast: %i\n",first,last);
+	//exit(0);
+}
+
+
+
+/* void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 {
 	int	block_size;
 	int	first;
@@ -49,7 +112,7 @@ void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 		}
 		set_push(stack_a, stack_b, 'b');
 	}
-}
+} */
 
 int find_position(t_list *stack, int position)
 {
@@ -79,7 +142,7 @@ void	generate_block(t_list *stack_a, t_list **temp, int flag)
 	{
 		min_ind = equal_value(duplicate, (*temp)->number);
 		max_ind = equal_value(duplicate, (*temp)->next->number);
-		new = find_position(duplicate, ((max_ind - min_ind) / 2 + min_ind + 3)); //((max_ind - min_ind) / 2) + min_ind + 3);
+		new = find_position(duplicate, ((max_ind - min_ind) / 2 + min_ind)); //((max_ind - min_ind) / 2) + min_ind + 3);
 	}
 	else
 		new = find_position(duplicate, (ft_lstsize(duplicate) / 2));
