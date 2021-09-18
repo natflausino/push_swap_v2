@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmoreira <mmoreira@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 21:29:58 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/17 21:22:2:10 by mmoreira         ###   ########.fr       */
+/*   Updated: 2021/09/18 04:00:46 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	move_to_top(t_list *stack_a, t_list *temp)
 	int	max;
 	int	min;
 
-	min = minimum_value(stack_a); //temp->number; ;
+	min = minimum_value(stack_a);
 	max = temp->next->number;
 	first = 0;
 	while (stack_a != NULL)
@@ -31,27 +31,10 @@ int	move_to_top(t_list *stack_a, t_list *temp)
 	return (first);
 }
 
-
-/*void	print3(t_list *stack, char *id)
-{
-
-	t_list *temp;
-
-	temp = stack;
-	//printf("stack %s\n", id);
-	while(temp)
-	{
-		//printf("%i\n",temp->number);
-		temp = temp->next;
-	}
-}*/
-
-
 void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 {
 	t_list	*lst;
 	int		block_size;
-
 	int		first;
 	int		last;
 	int		cont;
@@ -63,7 +46,7 @@ void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 		lst = *stack_a;
 		while (lst)
 		{
-			if (lst->number >= temp->number 
+			if (lst->number >= temp->number
 				&& lst->number <= temp->next->number)
 				break ;
 			first++;
@@ -74,49 +57,24 @@ void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
 		while (lst)
 		{
 			cont++;
-			if (lst->number >= temp->number 
+			if (lst->number >= temp->number
 				&& lst->number <= temp->next->number)
 				last = cont;
 			lst = lst->next;
 		}
 		if (first <= ft_lstsize(*stack_a) - last + 1)
-			while(first--)
+			while (first--)
 				set_rotate(stack_a, 0);
 		else
-			while(ft_lstsize(*stack_a) + 1 - last++)
+			while (ft_lstsize(*stack_a) + 1 - last++)
 				set_reverse_rotate(stack_a, 0);
 		set_push(stack_a, stack_b, 'b');
 	}
-	//print3(*stack_a, "a");
-	//printf("----------------------------\nfirst: %i\nlast: %i\n",first,last);
-	//exit(0);
 }
 
-
-
-/* void	split_block(t_list **stack_a, t_list **stack_b, t_list *temp)
+int	find_position(t_list *stack, int position)
 {
-	int	block_size;
-	int	first;
-	//t_stack stack;
-
-	block_size = index_counter(*stack_a, temp);
-	while (ft_lstsize(*stack_b) < block_size)
-	{
-		first = move_to_top(*stack_a, temp);
-		while (first)
-		{
-			write(1, "Split_block\n", 12);
-			set_rotate(stack_a, 0);
-			first--;
-		}
-		set_push(stack_a, stack_b, 'b');
-	}
-} */
-
-int find_position(t_list *stack, int position)
-{
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack != NULL)
@@ -131,10 +89,10 @@ int find_position(t_list *stack, int position)
 
 void	generate_block(t_list *stack_a, t_list **temp, int flag)
 {
-	t_list *duplicate;
-	int	min_ind;;
-	int max_ind;
-	int	new;
+	t_list	*duplicate;
+	int		min_ind;
+	int		max_ind;
+	int		new;
 
 	duplicate = ft_lstduplicate(stack_a);
 	sort_duplicate(&duplicate);
@@ -142,7 +100,7 @@ void	generate_block(t_list *stack_a, t_list **temp, int flag)
 	{
 		min_ind = equal_value(duplicate, (*temp)->number);
 		max_ind = equal_value(duplicate, (*temp)->next->number);
-		new = find_position(duplicate, ((max_ind - min_ind) / 2 + min_ind)); //((max_ind - min_ind) / 2) + min_ind + 3);
+		new = find_position(duplicate, ((max_ind - min_ind) / 2 + min_ind));
 	}
 	else
 		new = find_position(duplicate, (ft_lstsize(duplicate) / 2));
@@ -198,14 +156,13 @@ void	sort_duplicate(t_list **duplicate)
 	sort_duplicate(&first);
 	sort_duplicate(&second);
 	*duplicate = merge_sorted_duplicate(first, second);
-
 }
 
 int	index_counter(t_list *stack_a, t_list *temp)
 {
-	t_list *duplicate;
-	int min_ind;
-	int max_ind;
+	t_list	*duplicate;
+	int		min_ind;
+	int		max_ind;
 
 	duplicate = ft_lstduplicate(stack_a);
 	sort_duplicate(&duplicate);

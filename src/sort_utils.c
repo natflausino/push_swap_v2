@@ -6,15 +6,15 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 20:38:43 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/16 23:57:12 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 04:02:47 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int equal_value(t_list *stack, int value)
+int	equal_value(t_list *stack, int value)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack != NULL)
@@ -27,7 +27,7 @@ int equal_value(t_list *stack, int value)
 	return (INT_MIN);
 }
 
-int maximum_value(t_list *stack)
+int	maximum_value(t_list *stack)
 {
 	int	value;
 
@@ -43,10 +43,10 @@ int maximum_value(t_list *stack)
 	return (value);
 }
 
-int minimum_value(t_list *stack)
+int	minimum_value(t_list *stack)
 {
-	int	value;
-	t_list *aux;
+	int		value;
+	t_list	*aux;
 
 	aux = stack;
 	value = stack->number;
@@ -63,7 +63,7 @@ int minimum_value(t_list *stack)
 
 void	send_min(t_stack *stack, t_list **stack_x, t_list **stack_y)
 {
-	int min_num;
+	int	min_num;
 
 	stack_y = (t_list **)stack_y;
 	min_num = minimum_value(*stack_x);

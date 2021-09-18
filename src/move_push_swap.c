@@ -6,13 +6,13 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:57:46 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/16 21:57:51 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 03:39:35 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push(t_list **stack_x, t_list **stack_y) //top x -> top y
+void	push(t_list **stack_x, t_list **stack_y)
 {
 	t_list	*aux;
 
@@ -30,16 +30,16 @@ void	push(t_list **stack_x, t_list **stack_y) //top x -> top y
 
 void	set_push(t_list **stack_a, t_list **stack_b, int c)
 {
-		if (c == 'a')
-		{
-			push(stack_b, stack_a);
-			write(1, "pa\n", 3);
-		}
-		if (c == 'b')
-		{
-			push(stack_a, stack_b);
-			write(1, "pb\n", 3);
-		}
+	if (c == 'a')
+	{
+		push(stack_b, stack_a);
+		write(1, "pa\n", 3);
+	}
+	if (c == 'b')
+	{
+		push(stack_a, stack_b);
+		write(1, "pb\n", 3);
+	}
 }
 
 void	swap(t_list *stack)

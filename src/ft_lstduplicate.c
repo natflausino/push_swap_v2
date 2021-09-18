@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 00:09:23 by csantos-          #+#    #+#             */
-/*   Updated: 2021/09/14 23:28:32 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 03:37:40 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ t_list	*ft_lstduplicate(t_list *lst)
 		if (!new)
 		{
 			ft_lst_free(&duplicate);
-			return NULL;
+			return (NULL);
 		}
 		ft_lstadd_back(&duplicate, new);
 		lst = lst->next;
-		//ft_lst_free(&new);
 	}
-	//ft_lst_free(&new);
 	return (duplicate);
 }

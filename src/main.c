@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 23:48:03 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/17 23:02:20 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 04:04:11 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_stack(t_stack *stack)
 	ft_lst_free(&stack->stack_b);
 }
 
-void	test_print(t_stack *stack)
+/*void	test_print(t_stack *stack)
 {
 	t_list	*node;
 	t_list	*test;
@@ -59,8 +59,8 @@ void	test_print(t_stack *stack)
 		printf("%s\n", argv[i]);
 		i++;
 	}
-	return(0); */
-}
+	return(0);
+}*/
 
 void	verify_args(int argc, char **argv)
 {
@@ -108,10 +108,8 @@ int	main(int argc, char **argv)
 	{
 		init_stacks(&stack, argc, argv);
 		set_sort(&stack);
-		//test_print(&stack);	
 		free_stack(&stack);
 	}
 	if (string_true == 1)
-			free(argv);
-	//free_stack(&stack);
+		free(argv);
 }

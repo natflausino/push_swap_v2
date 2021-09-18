@@ -6,7 +6,7 @@
 /*   By: csantos- <csantos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 23:25:25 by nbarreir          #+#    #+#             */
-/*   Updated: 2021/09/18 02:27:01 by csantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 03:42:45 by csantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_stack_sorted(t_list *stack)
 {
-	while(stack->next != NULL)
+	while (stack->next != NULL)
 	{
 		if (stack->number > stack->next->number)
 			return (0);
@@ -31,8 +31,8 @@ int	*replace_numbs(int argc, char **argv)
 	int	i;
 	int	j;
 
-	numbers1 = malloc((argc) * sizeof(int*));
-	numbers2 = malloc((argc) * sizeof(int*));
+	numbers1 = malloc((argc) * sizeof(int *));
+	numbers2 = malloc((argc) * sizeof(int *));
 	i = -1;
 	while (++i < argc)
 		numbers1[i] = ft_atoll(argv[i]);
@@ -47,7 +47,7 @@ int	*replace_numbs(int argc, char **argv)
 		numbers2[i] = cont + 1;
 	}
 	free(numbers1);
-	return(numbers2);
+	return (numbers2);
 }
 
 void	fill_stack_a(t_stack *stack, int argc, char **argv)
